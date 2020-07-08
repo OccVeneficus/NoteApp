@@ -15,7 +15,7 @@ namespace NoteApp
         /// <summary>
         /// Название заметки
         /// </summary>
-        private string _name;
+        private string _name; //TODO: одна пустая строка между членами класса - исправить здесь и везде далее
         /// <summary>
         /// Задает/возвращает название заметки размером не более 50 символов
         /// </summary>
@@ -29,7 +29,7 @@ namespace NoteApp
                 }
 
                 _name = value;
-                _modifiedDate = DateTime.Today;
+                _modifiedDate = DateTime.Today; //TODO: здесь и везде лучше использовать DateTime.Now - на случай сравнения между собой даты создания и даты редактирования наличие времени вплоть до миллисекунд лучше чем просто дата
             }
             get
             {
