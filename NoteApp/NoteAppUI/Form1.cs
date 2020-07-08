@@ -38,8 +38,8 @@ namespace NoteAppUI
             richTextBox1.AppendText(note.CreatedDate.ToString("d") + "\n");
             richTextBox1.AppendText(note.ModifidedDate.ToString("d") + "\n");
             project.Notes.Add(note);
-            ProjectManager.SaveToFile(project);
-            Project loadProject = ProjectManager.LoadFromFile();
+            ProjectManager.SaveToFile(project,Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\NoteApp.notes");
+            Project loadProject = ProjectManager.LoadFromFile(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\NoteApp.notes");
             richTextBox1.AppendText("Файл сохранен и загружен в папку My Documents\n");
             richTextBox1.AppendText(loadProject.Notes.ElementAt(0).Text.ToString());
         }

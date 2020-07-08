@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace NoteApp
 {
@@ -16,6 +17,7 @@ namespace NoteApp
         /// Название заметки
         /// </summary>
         private string _name; //TODO: одна пустая строка между членами класса - исправить здесь и везде далее
+
         /// <summary>
         /// Задает/возвращает название заметки размером не более 50 символов
         /// </summary>
@@ -29,13 +31,14 @@ namespace NoteApp
                 }
 
                 _name = value;
-                _modifiedDate = DateTime.Today; //TODO: здесь и везде лучше использовать DateTime.Now - на случай сравнения между собой даты создания и даты редактирования наличие времени вплоть до миллисекунд лучше чем просто дата
+                _modifiedDate = DateTime.Now; //TODO: здесь и везде лучше использовать DateTime.Now - на случай сравнения между собой даты создания и даты редактирования наличие времени вплоть до миллисекунд лучше чем просто дата
             }
             get
             {
                 return _name;
             }
         }
+
         /// <summary>
         /// Задает/возвращает текст заметки
         /// </summary>
@@ -45,6 +48,7 @@ namespace NoteApp
         /// Категория заметки
         /// </summary>
         private NoteCategory _category;
+
         /// <summary>
         /// Задает/возвращает категорию заметки
         /// </summary>
@@ -53,17 +57,19 @@ namespace NoteApp
             set
             {
                 _category = value;
-                _modifiedDate = DateTime.Today;
+                _modifiedDate = DateTime.Now;
             }
             get
             {
                 return _category;
             }
         }
+
         /// <summary>
         /// Дата создания заметки
         /// </summary>
         private DateTime _createdDate;
+
         /// <summary>
         /// Возвращает дату создания заметки
         /// </summary>
@@ -71,17 +77,19 @@ namespace NoteApp
         {
             private set
             {
-                _createdDate = DateTime.Today;
+                _createdDate = DateTime.Now;
             }
             get
             {
                 return _createdDate;
             }
         }
+
         /// <summary>
         /// Дата последнего изменения заметки
         /// </summary>
         private DateTime _modifiedDate;
+
         /// <summary>
         /// Возвращает дату последнего изменения параметров заметки
         /// </summary>
@@ -89,13 +97,14 @@ namespace NoteApp
         {
             private set
             {
-                _modifiedDate = DateTime.Today;
+                _modifiedDate = DateTime.Now;
             }
             get
             {
                 return _modifiedDate;
             }
         }
+
         /// <summary>
         /// Реализация интерфейса IClone
         /// </summary>
@@ -112,6 +121,7 @@ namespace NoteApp
 
             };
         }
+
         /// <summary>
         /// Конструктор по умолчанию
         /// </summary>
@@ -120,8 +130,9 @@ namespace NoteApp
             this.Name = "No name";
             this.Text = "";
             this.Category = NoteCategory.Other;
-            this.CreatedDate = DateTime.Today;
-            this.ModifidedDate = DateTime.Today;
+            this.CreatedDate = DateTime.Now;
+            this.ModifidedDate = DateTime.Now;
         }
+
     }
 }

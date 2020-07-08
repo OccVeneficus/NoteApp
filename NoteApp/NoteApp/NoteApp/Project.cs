@@ -15,6 +15,7 @@ namespace NoteApp
         /// Коллекция всех созданных записок
         /// </summary>
         private List<Note> _notes = new List<Note>();
+
         /// <summary>
         /// Доступ к коллекции записок
         /// </summary>
