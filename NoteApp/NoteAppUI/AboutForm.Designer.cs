@@ -138,6 +138,7 @@
             this.MaximumSize = new System.Drawing.Size(454, 414);
             this.MinimumSize = new System.Drawing.Size(454, 414);
             this.Name = "About";
+            this.ShowIcon = false;
             this.Text = "About";
             this.ResumeLayout(false);
             this.PerformLayout();

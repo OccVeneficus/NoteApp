@@ -31,7 +31,7 @@ namespace NoteApp
                 }
 
                 _name = value;
-                _modifiedDate = DateTime.Now; //TODO: здесь и везде лучше использовать DateTime.Now - на случай сравнения между собой даты создания и даты редактирования наличие времени вплоть до миллисекунд лучше чем просто дата
+                //TODO: здесь и везде лучше использовать DateTime.Now - на случай сравнения между собой даты создания и даты редактирования наличие времени вплоть до миллисекунд лучше чем просто дата
             }
             get
             {
@@ -57,7 +57,6 @@ namespace NoteApp
             set
             {
                 _category = value;
-                _modifiedDate = DateTime.Now;
             }
             get
             {
@@ -73,17 +72,7 @@ namespace NoteApp
         /// <summary>
         /// Возвращает дату создания заметки
         /// </summary>
-        public DateTime CreatedDate
-        {
-            private set
-            {
-                _createdDate = DateTime.Now;
-            }
-            get
-            {
-                return _createdDate;
-            }
-        }
+        public DateTime CreatedDate { private set; get; }
 
         /// <summary>
         /// Дата последнего изменения заметки
@@ -93,18 +82,8 @@ namespace NoteApp
         /// <summary>
         /// Возвращает дату последнего изменения параметров заметки
         /// </summary>
-        [field: NonSerialized]
-        public DateTime ModifidedDate
-        {
-            private set
-            {
-                _modifiedDate = DateTime.Now;
-            }
-            get
-            {
-                return _modifiedDate;
-            }
-        }
+        
+        public DateTime ModifidedDate { set; get; }
 
         /// <summary>
         /// Реализация интерфейса IClone
@@ -112,27 +91,25 @@ namespace NoteApp
         /// <returns>Возвращает новый экземпляр-копию текущего объекта</returns>
         public object Clone()
         {
-            return new Note 
-            { 
-                Name = this.Name,
-                Category = this.Category,
-                Text = this.Text,
-                ModifidedDate = this.ModifidedDate,
-                CreatedDate = this.CreatedDate
-
-            };
+            return new Note(this.CreatedDate, this.ModifidedDate, this.Name, this.Text, this.Category);
         }
 
         /// <summary>
-        /// Конструктор по умолчанию
+        /// Конструктор класса. Используется сериализатором JSON
         /// </summary>
-        public Note()
+        /// <param name="createdDate">Дата создания заметки</param>
+        /// <param name="modifiedDate">Дата последнего изменения заметки</param>
+        /// <param name="name">Название заметки</param>
+        /// <param name="text">Текст заметки</param>
+        /// <param name="category">Категория <see cref="NoteCategory"/> заметки</param>
+        [JsonConstructor]
+        public Note(DateTime createdDate, DateTime modifiedDate, string name, string text, NoteCategory category)
         {
-            this.Name = "No name";
-            this.Text = "";
-            this.Category = NoteCategory.Other;
-            this.CreatedDate = DateTime.Now;
-            this.ModifidedDate = DateTime.Now;
+            this.CreatedDate = createdDate;
+            this.ModifidedDate = modifiedDate;
+            this.Name = name;
+            this.Text = text;
+            this.Category = category;
         }
 
     }

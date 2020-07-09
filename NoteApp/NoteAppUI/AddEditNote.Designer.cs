@@ -153,6 +153,7 @@
             // NoteCategoryEditComboBox
             // 
             this.NoteCategoryEditComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.NoteCategoryEditComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.NoteCategoryEditComboBox.FormattingEnabled = true;
             this.NoteCategoryEditComboBox.Location = new System.Drawing.Point(69, 36);
             this.NoteCategoryEditComboBox.Margin = new System.Windows.Forms.Padding(2);
@@ -170,6 +171,7 @@
             this.ButtonEditNoteCancel.TabIndex = 21;
             this.ButtonEditNoteCancel.Text = "Cancel";
             this.ButtonEditNoteCancel.UseVisualStyleBackColor = true;
+            this.ButtonEditNoteCancel.Click += new System.EventHandler(this.ButtonEditNoteCancel_Click);
             // 
             // ButtonEditNoteOK
             // 
@@ -181,6 +183,7 @@
             this.ButtonEditNoteOK.TabIndex = 20;
             this.ButtonEditNoteOK.Text = "OK";
             this.ButtonEditNoteOK.UseVisualStyleBackColor = true;
+            this.ButtonEditNoteOK.Click += new System.EventHandler(this.ButtonEditNoteOK_Click);
             // 
             // NoteEditRichTextBox
             // 
