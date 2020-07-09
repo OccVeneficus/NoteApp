@@ -3,26 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NoteApp;
 
 namespace NoteAppUI
 {
-    public partial class MainMenu : Form
+    public partial class About : Form
     {
-        public MainMenu()
+        public About()
         {
             InitializeComponent();
-
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
     }
 }

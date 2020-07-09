@@ -16,7 +16,9 @@ namespace NoteAppUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new About());
+            //Application.Run(new AddEditNote());
+            Application.Run(new MainMenu());
         }
     }
 }

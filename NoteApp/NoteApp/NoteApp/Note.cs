@@ -93,6 +93,7 @@ namespace NoteApp
         /// <summary>
         /// Возвращает дату последнего изменения параметров заметки
         /// </summary>
+        [field: NonSerialized]
         public DateTime ModifidedDate
         {
             private set
