@@ -11,48 +11,52 @@ using NoteApp;
 
 namespace NoteAppUI
 {
-    public partial class AddEditNote : Form
+    public partial class NoteForm : Form
     {
-        private Note _tempNote;
-        public Note TempNote { get; set; }
+        public Note TempNote { set; get; }
 
-        private Project _tempProject;
-
-
-        public Project TempProject
-        {
-            get
-            {
-                return  _tempProject;
-            }
-            set
-            {
-                _tempProject = value;
-            }
-        }
-
-        public AddEditNote()
+        public NoteForm()
         {
             InitializeComponent();
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))
             {
                 NoteCategoryEditComboBox.Items.Add(category);
             }
-            _tempNote = new Note(DateTime.Now, DateTime.Now, "No Name", "", NoteCategory.Other);
-            NoteTitleTextbox.Text = _tempNote.Name;
         }
 
         private void ButtonEditNoteOK_Click(object sender, EventArgs e)
         {
-            Note newNote = new Note(DateTime.Now, DateTime.Now, NoteTitleTextbox.Text,NoteEditRichTextBox.Text,
-                (NoteCategory)NoteCategoryEditComboBox.SelectedItem);
-            _tempProject.Notes.Add(newNote);
+            DialogResult = DialogResult.OK;
             this.Close();
         }
 
         private void ButtonEditNoteCancel_Click(object sender, EventArgs e)
         {
-            
+            this.Close();
+        }
+
+        private void NoteTitleTextbox_TextChanged(object sender, EventArgs e)
+        {
+            TempNote.Name = NoteTitleTextbox.Text;
+        }
+
+        private void NoteEditRichTextBox_TextChanged(object sender, EventArgs e)
+        {
+            TempNote.Text = NoteEditRichTextBox.Text;
+        }
+
+        private void AddEditNote_Shown(object sender, EventArgs e)
+        {
+            NoteEditRichTextBox.Text = TempNote.Text;
+            NoteCategoryEditComboBox.SelectedItem = TempNote.Category;
+            NoteTitleTextbox.Text = TempNote.Name;
+            NoteCreatedEditDateTime.Value = TempNote.CreatedDate;
+            NoteModifiedEditDateTime.Value = TempNote.ModifidedDate;
+        }
+
+        private void NoteCategoryEditComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TempNote.Category = (NoteCategory)NoteCategoryEditComboBox.SelectedItem;
         }
     }
 }

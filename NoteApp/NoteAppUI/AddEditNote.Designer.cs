@@ -1,6 +1,6 @@
 ﻿namespace NoteAppUI
 {
-    partial class AddEditNote
+    partial class NoteForm
     {
         /// <summary>
         /// Required designer variable.
@@ -83,6 +83,7 @@
             this.NoteTitleTextbox.Name = "NoteTitleTextbox";
             this.NoteTitleTextbox.Size = new System.Drawing.Size(520, 20);
             this.NoteTitleTextbox.TabIndex = 15;
+            this.NoteTitleTextbox.TextChanged += new System.EventHandler(this.NoteTitleTextbox_TextChanged);
             // 
             // NoteTitleLabel
             // 
@@ -160,6 +161,7 @@
             this.NoteCategoryEditComboBox.Name = "NoteCategoryEditComboBox";
             this.NoteCategoryEditComboBox.Size = new System.Drawing.Size(137, 21);
             this.NoteCategoryEditComboBox.TabIndex = 16;
+            this.NoteCategoryEditComboBox.SelectedIndexChanged += new System.EventHandler(this.NoteCategoryEditComboBox_SelectedIndexChanged);
             // 
             // ButtonEditNoteCancel
             // 
@@ -196,17 +198,19 @@
             this.NoteEditRichTextBox.Size = new System.Drawing.Size(600, 240);
             this.NoteEditRichTextBox.TabIndex = 19;
             this.NoteEditRichTextBox.Text = "";
+            this.NoteEditRichTextBox.TextChanged += new System.EventHandler(this.NoteEditRichTextBox_TextChanged);
             // 
-            // AddEditNote
+            // NoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "AddEditNote";
+            this.Name = "NoteForm";
             this.ShowIcon = false;
             this.Text = "Add/Edit Note";
+            this.Shown += new System.EventHandler(this.AddEditNote_Shown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
