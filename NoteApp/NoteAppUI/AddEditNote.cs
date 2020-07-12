@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using NoteApp;
 
 namespace NoteAppUI
-{
+{ //TODO: имя файла не соответствует имени класса
     public partial class NoteForm : Form
-    {
+    { //TODO: почему Temp? Temp - это имя для переменных внутри метода, а не для свойств и полей. //TODO: xml
         public Note TempNote { set; get; }
 
         public NoteForm()
@@ -57,8 +57,8 @@ namespace NoteAppUI
         private void NoteTitleTextbox_Validating(object sender, CancelEventArgs e)
         {
             if (NoteTitleTextbox.Text.Length > 50)
-            {
-              //  NoteTitleTextbox.BackColor = Color.LightSalmon;
+            { //TODO: закомментированный код на пул реквесты на отправляется - если он не нужен, удалить. Если нужен, то оставить комментарий с информацией для других разработчиков
+             //  NoteTitleTextbox.BackColor = Color.LightSalmon;
                 e.Cancel = true;
                 NoteTitleTextbox.Select(0,NoteTitleTextbox.Text.Length);
             }
@@ -67,7 +67,8 @@ namespace NoteAppUI
         private void NoteTitleTextbox_Validated(object sender, EventArgs e)
         {
             TempNote.Name = NoteTitleTextbox.Text;
-           // NoteTitleTextbox.BackColor = Color.White;
+            //TODO: см. выше
+            // NoteTitleTextbox.BackColor = Color.White;
         }
 
         private void NoteTitleTextbox_TextChanged(object sender, EventArgs e)
