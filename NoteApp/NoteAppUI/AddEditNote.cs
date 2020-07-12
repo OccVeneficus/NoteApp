@@ -35,11 +35,6 @@ namespace NoteAppUI
             this.Close();
         }
 
-        private void NoteTitleTextbox_TextChanged(object sender, EventArgs e)
-        {
-            TempNote.Name = NoteTitleTextbox.Text;
-        }
-
         private void NoteEditRichTextBox_TextChanged(object sender, EventArgs e)
         {
             TempNote.Text = NoteEditRichTextBox.Text;
@@ -57,6 +52,35 @@ namespace NoteAppUI
         private void NoteCategoryEditComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             TempNote.Category = (NoteCategory)NoteCategoryEditComboBox.SelectedItem;
+        }
+
+        private void NoteTitleTextbox_Validating(object sender, CancelEventArgs e)
+        {
+            if (NoteTitleTextbox.Text.Length > 50)
+            {
+              //  NoteTitleTextbox.BackColor = Color.LightSalmon;
+                e.Cancel = true;
+                NoteTitleTextbox.Select(0,NoteTitleTextbox.Text.Length);
+            }
+        }
+
+        private void NoteTitleTextbox_Validated(object sender, EventArgs e)
+        {
+            TempNote.Name = NoteTitleTextbox.Text;
+           // NoteTitleTextbox.BackColor = Color.White;
+        }
+
+        private void NoteTitleTextbox_TextChanged(object sender, EventArgs e)
+        {
+            if (NoteTitleTextbox.Text.Length > 50)
+            {
+                NoteTitleTextbox.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                NoteTitleTextbox.BackColor = Color.White;
+                TempNote.Name = NoteTitleTextbox.Text;
+            }
         }
     }
 }

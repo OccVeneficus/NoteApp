@@ -84,6 +84,8 @@
             this.NoteTitleTextbox.Size = new System.Drawing.Size(520, 20);
             this.NoteTitleTextbox.TabIndex = 15;
             this.NoteTitleTextbox.TextChanged += new System.EventHandler(this.NoteTitleTextbox_TextChanged);
+            this.NoteTitleTextbox.Validating += new System.ComponentModel.CancelEventHandler(this.NoteTitleTextbox_Validating);
+            this.NoteTitleTextbox.Validated += new System.EventHandler(this.NoteTitleTextbox_Validated);
             // 
             // NoteTitleLabel
             // 

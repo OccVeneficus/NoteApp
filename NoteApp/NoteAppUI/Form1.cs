@@ -16,8 +16,6 @@ namespace NoteAppUI
     {
         private Project _project;
 
-        private Note _tempNote;
-
         public MainForm()
         {
             InitializeComponent();
@@ -42,6 +40,11 @@ namespace NoteAppUI
             {
                 NoteNamesListBox.Items.Add(note.Name);
             }
+
+            if (_project.Notes.Count != 0)
+            {
+                NoteNamesListBox.SelectedItem = _project.Notes[0].Name;
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,21 +67,25 @@ namespace NoteAppUI
 
         private void editNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _tempNote = _project.Notes.Find(note => note.Name.Equals(NoteNamesListBox.SelectedItem.ToString()));
+            Note selectedNote = _project.Notes.Find(note => note.Name.Equals(NoteNamesListBox.SelectedItem.ToString())
+                                                            && note.CreatedDate.Equals(CreationDateTime.Value));
+            Note selectedNoteCopy = (Note) selectedNote.Clone();
             NoteForm addEditNote = new NoteForm();
-            addEditNote.TempNote = _tempNote;
+            addEditNote.TempNote = selectedNoteCopy;
             addEditNote.ShowDialog();
             if (addEditNote.DialogResult == DialogResult.OK)
             {
-                _tempNote = addEditNote.TempNote;
-                _tempNote.ModifidedDate = DateTime.Now;
+                selectedNote.Name = addEditNote.TempNote.Name;
+                selectedNote.Text = addEditNote.TempNote.Text;
+                selectedNote.Category = addEditNote.TempNote.Category;
+                selectedNote.ModifidedDate = DateTime.Now;
                 NoteNamesListBox.Items.Clear();
                 foreach (var note in _project.Notes)
                 {
                     NoteNamesListBox.Items.Add(note.Name);
                 }
                 ProjectManager.SaveToFile(_project, Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\NoteApp.notes");
-                NoteNamesListBox.SelectedItem = _tempNote.Name;
+                NoteNamesListBox.SelectedItem = addEditNote.TempNote.Name;
             }
         }
 
@@ -95,7 +102,10 @@ namespace NoteAppUI
                 {
                     NoteNamesListBox.Items.Add(note.Name);
                 }
-                NoteNamesListBox.SelectedItem = NoteNamesListBox.Items[0];
+                if (_project.Notes.Count != 0)
+                {
+                    NoteNamesListBox.SelectedItem = _project.Notes[0].Name;
+                }
             }
         }
 
@@ -107,12 +117,12 @@ namespace NoteAppUI
 
         private void NoteNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Note note = _project.Notes.Find(n => n.Name.Equals(NoteNamesListBox.SelectedItem.ToString()));
-            NoteNameLabel.Text = note.Name;
-            NoteTextbox.Text = note.Text;
-            NoteCategory.Text = note.Category.ToString();
-            CreationDateTime.Value = note.CreatedDate;
-            ModifiedDateTime.Value = note.ModifidedDate;
+            Note currentNote = _project.Notes.Find(note => note.Name.Equals(NoteNamesListBox.SelectedItem.ToString()));
+            NoteNameLabel.Text = currentNote.Name;
+            NoteTextbox.Text = currentNote.Text;
+            NoteCategory.Text = currentNote.Category.ToString();
+            CreationDateTime.Value = currentNote.CreatedDate;
+            ModifiedDateTime.Value = currentNote.ModifidedDate;
         }
 
     }

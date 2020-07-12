@@ -218,7 +218,7 @@
             this.ButtonRemoveNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRemoveNote.ImageIndex = 0;
             this.ButtonRemoveNote.ImageList = this.imageList3;
-            this.ButtonRemoveNote.Location = new System.Drawing.Point(55, 499);
+            this.ButtonRemoveNote.Location = new System.Drawing.Point(55, 498);
             this.ButtonRemoveNote.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ButtonRemoveNote.Name = "ButtonRemoveNote";
             this.ButtonRemoveNote.Size = new System.Drawing.Size(19, 20);
@@ -234,7 +234,7 @@
             this.ButtonEditNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonEditNote.ImageIndex = 0;
             this.ButtonEditNote.ImageList = this.imageList2;
-            this.ButtonEditNote.Location = new System.Drawing.Point(32, 499);
+            this.ButtonEditNote.Location = new System.Drawing.Point(32, 498);
             this.ButtonEditNote.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ButtonEditNote.Name = "ButtonEditNote";
             this.ButtonEditNote.Size = new System.Drawing.Size(19, 20);
@@ -250,7 +250,7 @@
             this.ButtonAddNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAddNote.ImageIndex = 0;
             this.ButtonAddNote.ImageList = this.imageList1;
-            this.ButtonAddNote.Location = new System.Drawing.Point(9, 499);
+            this.ButtonAddNote.Location = new System.Drawing.Point(9, 498);
             this.ButtonAddNote.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ButtonAddNote.Name = "ButtonAddNote";
             this.ButtonAddNote.Size = new System.Drawing.Size(19, 20);
@@ -266,7 +266,7 @@
             this.NoteNamesListBox.Location = new System.Drawing.Point(4, 33);
             this.NoteNamesListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NoteNamesListBox.Name = "NoteNamesListBox";
-            this.NoteNamesListBox.Size = new System.Drawing.Size(242, 433);
+            this.NoteNamesListBox.Size = new System.Drawing.Size(242, 420);
             this.NoteNamesListBox.TabIndex = 0;
             this.NoteNamesListBox.SelectedIndexChanged += new System.EventHandler(this.NoteNamesListBox_SelectedIndexChanged);
             // 

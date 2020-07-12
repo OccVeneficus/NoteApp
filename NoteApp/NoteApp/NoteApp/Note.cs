@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -91,7 +92,8 @@ namespace NoteApp
         /// <returns>Возвращает новый экземпляр-копию текущего объекта</returns>
         public object Clone()
         {
-            return new Note(this.CreatedDate, this.ModifidedDate, this.Name, this.Text, this.Category);
+            var noteClone = new Note(this.CreatedDate, this.ModifidedDate, this.Name, this.Text, this.Category);
+            return noteClone;
         }
 
         /// <summary>
