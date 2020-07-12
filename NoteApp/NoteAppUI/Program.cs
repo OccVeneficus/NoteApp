@@ -15,9 +15,7 @@ namespace NoteAppUI
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new About()); //TODO: убрать закомментанированный код
-            //Application.Run(new AddEditNote());
+            Application.SetCompatibleTextRenderingDefault(false); //TODO: убрать закомментанированный код
             Application.Run(new MainForm());
         }
     }

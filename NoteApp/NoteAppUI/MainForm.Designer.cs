@@ -201,12 +201,13 @@
             this.splitContainer1.Panel1.Controls.Add(this.NoteNamesListBox);
             this.splitContainer1.Panel1.Controls.Add(this.CategoryComboBox);
             this.splitContainer1.Panel1.Controls.Add(this.ShowNoteCategoryLabel);
+            this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(10, 10, 0, 0);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(948, 529);
-            this.splitContainer1.SplitterDistance = 251;
+            this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -263,10 +264,10 @@
             this.NoteNamesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.NoteNamesListBox.FormattingEnabled = true;
-            this.NoteNamesListBox.Location = new System.Drawing.Point(4, 33);
-            this.NoteNamesListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NoteNamesListBox.Location = new System.Drawing.Point(9, 33);
+            this.NoteNamesListBox.Margin = new System.Windows.Forms.Padding(10);
             this.NoteNamesListBox.Name = "NoteNamesListBox";
-            this.NoteNamesListBox.Size = new System.Drawing.Size(242, 420);
+            this.NoteNamesListBox.Size = new System.Drawing.Size(262, 433);
             this.NoteNamesListBox.TabIndex = 0;
             this.NoteNamesListBox.SelectedIndexChanged += new System.EventHandler(this.NoteNamesListBox_SelectedIndexChanged);
             // 
@@ -274,16 +275,16 @@
             // 
             this.CategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CategoryComboBox.FormattingEnabled = true;
-            this.CategoryComboBox.Location = new System.Drawing.Point(86, 6);
+            this.CategoryComboBox.Location = new System.Drawing.Point(92, 6);
             this.CategoryComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(160, 21);
+            this.CategoryComboBox.Size = new System.Drawing.Size(179, 21);
             this.CategoryComboBox.TabIndex = 0;
             // 
             // ShowNoteCategoryLabel
             // 
             this.ShowNoteCategoryLabel.AutoSize = true;
-            this.ShowNoteCategoryLabel.Location = new System.Drawing.Point(2, 9);
+            this.ShowNoteCategoryLabel.Location = new System.Drawing.Point(6, 10);
             this.ShowNoteCategoryLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ShowNoteCategoryLabel.Name = "ShowNoteCategoryLabel";
             this.ShowNoteCategoryLabel.Size = new System.Drawing.Size(82, 13);
@@ -313,15 +314,15 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.NoteTextbox);
-            this.splitContainer2.Size = new System.Drawing.Size(694, 529);
-            this.splitContainer2.SplitterDistance = 111;
+            this.splitContainer2.Size = new System.Drawing.Size(665, 529);
+            this.splitContainer2.SplitterDistance = 95;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 0;
             // 
             // ModifiedNoteLabel
             // 
             this.ModifiedNoteLabel.AutoSize = true;
-            this.ModifiedNoteLabel.Location = new System.Drawing.Point(228, 76);
+            this.ModifiedNoteLabel.Location = new System.Drawing.Point(173, 72);
             this.ModifiedNoteLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.ModifiedNoteLabel.Name = "ModifiedNoteLabel";
             this.ModifiedNoteLabel.Size = new System.Drawing.Size(50, 13);
@@ -331,27 +332,27 @@
             // ModifiedDateTime
             // 
             this.ModifiedDateTime.Enabled = false;
-            this.ModifiedDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.ModifiedDateTime.Location = new System.Drawing.Point(281, 76);
+            this.ModifiedDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.ModifiedDateTime.Location = new System.Drawing.Point(227, 70);
             this.ModifiedDateTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ModifiedDateTime.Name = "ModifiedDateTime";
-            this.ModifiedDateTime.Size = new System.Drawing.Size(82, 20);
+            this.ModifiedDateTime.Size = new System.Drawing.Size(102, 20);
             this.ModifiedDateTime.TabIndex = 5;
             // 
             // CreationDateTime
             // 
             this.CreationDateTime.Enabled = false;
-            this.CreationDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.CreationDateTime.Location = new System.Drawing.Point(65, 76);
+            this.CreationDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.CreationDateTime.Location = new System.Drawing.Point(58, 70);
             this.CreationDateTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CreationDateTime.Name = "CreationDateTime";
-            this.CreationDateTime.Size = new System.Drawing.Size(81, 20);
+            this.CreationDateTime.Size = new System.Drawing.Size(102, 20);
             this.CreationDateTime.TabIndex = 4;
             // 
             // CreatedNoteLabel
             // 
             this.CreatedNoteLabel.AutoSize = true;
-            this.CreatedNoteLabel.Location = new System.Drawing.Point(12, 76);
+            this.CreatedNoteLabel.Location = new System.Drawing.Point(7, 72);
             this.CreatedNoteLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CreatedNoteLabel.Name = "CreatedNoteLabel";
             this.CreatedNoteLabel.Size = new System.Drawing.Size(47, 13);
@@ -361,17 +362,18 @@
             // NoteCategory
             // 
             this.NoteCategory.AutoSize = true;
-            this.NoteCategory.Location = new System.Drawing.Point(63, 46);
+            this.NoteCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.NoteCategory.Location = new System.Drawing.Point(55, 43);
             this.NoteCategory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NoteCategory.Name = "NoteCategory";
-            this.NoteCategory.Size = new System.Drawing.Size(72, 13);
+            this.NoteCategory.Size = new System.Drawing.Size(81, 15);
             this.NoteCategory.TabIndex = 2;
             this.NoteCategory.Text = "NoteCategory";
             // 
             // CategoryNoteLabel
             // 
             this.CategoryNoteLabel.AutoSize = true;
-            this.CategoryNoteLabel.Location = new System.Drawing.Point(12, 46);
+            this.CategoryNoteLabel.Location = new System.Drawing.Point(7, 45);
             this.CategoryNoteLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CategoryNoteLabel.Name = "CategoryNoteLabel";
             this.CategoryNoteLabel.Size = new System.Drawing.Size(52, 13);
@@ -382,7 +384,7 @@
             // 
             this.NoteNameLabel.AutoSize = true;
             this.NoteNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NoteNameLabel.Location = new System.Drawing.Point(21, 9);
+            this.NoteNameLabel.Location = new System.Drawing.Point(11, 10);
             this.NoteNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NoteNameLabel.Name = "NoteNameLabel";
             this.NoteNameLabel.Size = new System.Drawing.Size(125, 26);
@@ -394,9 +396,9 @@
             this.NoteTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NoteTextbox.Enabled = false;
             this.NoteTextbox.Location = new System.Drawing.Point(0, 0);
-            this.NoteTextbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.NoteTextbox.Margin = new System.Windows.Forms.Padding(10);
             this.NoteTextbox.Name = "NoteTextbox";
-            this.NoteTextbox.Size = new System.Drawing.Size(694, 417);
+            this.NoteTextbox.Size = new System.Drawing.Size(665, 433);
             this.NoteTextbox.TabIndex = 0;
             this.NoteTextbox.Text = "";
             // 
@@ -411,6 +413,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.Text = "NoteApp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.contextMenuStrip1.ResumeLayout(false);
             this.MainMenuStrip.ResumeLayout(false);
             this.MainMenuStrip.PerformLayout();

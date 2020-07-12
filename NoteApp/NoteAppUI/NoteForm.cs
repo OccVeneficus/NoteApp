@@ -13,7 +13,11 @@ namespace NoteAppUI
 { //TODO: имя файла не соответствует имени класса
     public partial class NoteForm : Form
     { //TODO: почему Temp? Temp - это имя для переменных внутри метода, а не для свойств и полей. //TODO: xml
-        public Note TempNote { set; get; }
+
+        /// <summary>
+        /// Заметка для редактирования/добавления
+        /// </summary>
+        public Note OpenNote { set; get; }
 
         public NoteForm()
         {
@@ -37,28 +41,27 @@ namespace NoteAppUI
 
         private void NoteEditRichTextBox_TextChanged(object sender, EventArgs e)
         {
-            TempNote.Text = NoteEditRichTextBox.Text;
+            OpenNote.Text = NoteEditRichTextBox.Text;
         }
 
         private void AddEditNote_Shown(object sender, EventArgs e)
         {
-            NoteEditRichTextBox.Text = TempNote.Text;
-            NoteCategoryEditComboBox.SelectedItem = TempNote.Category;
-            NoteTitleTextbox.Text = TempNote.Name;
-            NoteCreatedEditDateTime.Value = TempNote.CreatedDate;
-            NoteModifiedEditDateTime.Value = TempNote.ModifidedDate;
+            NoteEditRichTextBox.Text = OpenNote.Text;
+            NoteCategoryEditComboBox.SelectedItem = OpenNote.Category;
+            NoteTitleTextbox.Text = OpenNote.Name;
+            NoteCreatedEditDateTime.Value = OpenNote.CreatedDate;
+            NoteModifiedEditDateTime.Value = OpenNote.ModifidedDate;
         }
 
         private void NoteCategoryEditComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TempNote.Category = (NoteCategory)NoteCategoryEditComboBox.SelectedItem;
+            OpenNote.Category = (NoteCategory)NoteCategoryEditComboBox.SelectedItem;
         }
 
         private void NoteTitleTextbox_Validating(object sender, CancelEventArgs e)
         {
             if (NoteTitleTextbox.Text.Length > 50)
             { //TODO: закомментированный код на пул реквесты на отправляется - если он не нужен, удалить. Если нужен, то оставить комментарий с информацией для других разработчиков
-             //  NoteTitleTextbox.BackColor = Color.LightSalmon;
                 e.Cancel = true;
                 NoteTitleTextbox.Select(0,NoteTitleTextbox.Text.Length);
             }
@@ -66,9 +69,8 @@ namespace NoteAppUI
 
         private void NoteTitleTextbox_Validated(object sender, EventArgs e)
         {
-            TempNote.Name = NoteTitleTextbox.Text;
+            OpenNote.Name = NoteTitleTextbox.Text;
             //TODO: см. выше
-            // NoteTitleTextbox.BackColor = Color.White;
         }
 
         private void NoteTitleTextbox_TextChanged(object sender, EventArgs e)
@@ -80,7 +82,7 @@ namespace NoteAppUI
             else
             {
                 NoteTitleTextbox.BackColor = Color.White;
-                TempNote.Name = NoteTitleTextbox.Text;
+                OpenNote.Name = NoteTitleTextbox.Text;
             }
         }
     }

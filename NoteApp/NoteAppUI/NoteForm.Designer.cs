@@ -52,6 +52,7 @@
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(20);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -78,10 +79,10 @@
             // NoteTitleTextbox
             // 
             this.NoteTitleTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.NoteTitleTextbox.Location = new System.Drawing.Point(69, 11);
+            this.NoteTitleTextbox.Location = new System.Drawing.Point(70, 10);
             this.NoteTitleTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.NoteTitleTextbox.Name = "NoteTitleTextbox";
-            this.NoteTitleTextbox.Size = new System.Drawing.Size(520, 20);
+            this.NoteTitleTextbox.Size = new System.Drawing.Size(519, 20);
             this.NoteTitleTextbox.TabIndex = 15;
             this.NoteTitleTextbox.TextChanged += new System.EventHandler(this.NoteTitleTextbox_TextChanged);
             this.NoteTitleTextbox.Validating += new System.ComponentModel.CancelEventHandler(this.NoteTitleTextbox_Validating);
@@ -91,7 +92,7 @@
             // 
             this.NoteTitleLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.NoteTitleLabel.AutoSize = true;
-            this.NoteTitleLabel.Location = new System.Drawing.Point(13, 11);
+            this.NoteTitleLabel.Location = new System.Drawing.Point(14, 13);
             this.NoteTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NoteTitleLabel.Name = "NoteTitleLabel";
             this.NoteTitleLabel.Size = new System.Drawing.Size(30, 13);
@@ -102,7 +103,7 @@
             // 
             this.NoteCategoryEditLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.NoteCategoryEditLabel.AutoSize = true;
-            this.NoteCategoryEditLabel.Location = new System.Drawing.Point(13, 36);
+            this.NoteCategoryEditLabel.Location = new System.Drawing.Point(14, 38);
             this.NoteCategoryEditLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NoteCategoryEditLabel.Name = "NoteCategoryEditLabel";
             this.NoteCategoryEditLabel.Size = new System.Drawing.Size(52, 13);
@@ -114,7 +115,7 @@
             this.NoteModifiedEditDateTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.NoteModifiedEditDateTime.Enabled = false;
             this.NoteModifiedEditDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.NoteModifiedEditDateTime.Location = new System.Drawing.Point(236, 61);
+            this.NoteModifiedEditDateTime.Location = new System.Drawing.Point(241, 60);
             this.NoteModifiedEditDateTime.Margin = new System.Windows.Forms.Padding(2);
             this.NoteModifiedEditDateTime.Name = "NoteModifiedEditDateTime";
             this.NoteModifiedEditDateTime.Size = new System.Drawing.Size(91, 20);
@@ -124,7 +125,7 @@
             // 
             this.NoteCreatedDateEditLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.NoteCreatedDateEditLabel.AutoSize = true;
-            this.NoteCreatedDateEditLabel.Location = new System.Drawing.Point(13, 61);
+            this.NoteCreatedDateEditLabel.Location = new System.Drawing.Point(14, 64);
             this.NoteCreatedDateEditLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NoteCreatedDateEditLabel.Name = "NoteCreatedDateEditLabel";
             this.NoteCreatedDateEditLabel.Size = new System.Drawing.Size(47, 13);
@@ -136,7 +137,7 @@
             this.NoteCreatedEditDateTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.NoteCreatedEditDateTime.Enabled = false;
             this.NoteCreatedEditDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.NoteCreatedEditDateTime.Location = new System.Drawing.Point(69, 61);
+            this.NoteCreatedEditDateTime.Location = new System.Drawing.Point(70, 60);
             this.NoteCreatedEditDateTime.Margin = new System.Windows.Forms.Padding(2);
             this.NoteCreatedEditDateTime.Name = "NoteCreatedEditDateTime";
             this.NoteCreatedEditDateTime.Size = new System.Drawing.Size(99, 20);
@@ -146,7 +147,7 @@
             // 
             this.NoteModifiedDateEditLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.NoteModifiedDateEditLabel.AutoSize = true;
-            this.NoteModifiedDateEditLabel.Location = new System.Drawing.Point(182, 61);
+            this.NoteModifiedDateEditLabel.Location = new System.Drawing.Point(187, 64);
             this.NoteModifiedDateEditLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.NoteModifiedDateEditLabel.Name = "NoteModifiedDateEditLabel";
             this.NoteModifiedDateEditLabel.Size = new System.Drawing.Size(50, 13);
@@ -158,7 +159,7 @@
             this.NoteCategoryEditComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.NoteCategoryEditComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.NoteCategoryEditComboBox.FormattingEnabled = true;
-            this.NoteCategoryEditComboBox.Location = new System.Drawing.Point(69, 36);
+            this.NoteCategoryEditComboBox.Location = new System.Drawing.Point(70, 35);
             this.NoteCategoryEditComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.NoteCategoryEditComboBox.Name = "NoteCategoryEditComboBox";
             this.NoteCategoryEditComboBox.Size = new System.Drawing.Size(137, 21);
@@ -194,10 +195,10 @@
             this.NoteEditRichTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NoteEditRichTextBox.Location = new System.Drawing.Point(2, 2);
-            this.NoteEditRichTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.NoteEditRichTextBox.Location = new System.Drawing.Point(11, 2);
+            this.NoteEditRichTextBox.Margin = new System.Windows.Forms.Padding(50);
             this.NoteEditRichTextBox.Name = "NoteEditRichTextBox";
-            this.NoteEditRichTextBox.Size = new System.Drawing.Size(600, 240);
+            this.NoteEditRichTextBox.Size = new System.Drawing.Size(578, 240);
             this.NoteEditRichTextBox.TabIndex = 19;
             this.NoteEditRichTextBox.Text = "";
             this.NoteEditRichTextBox.TextChanged += new System.EventHandler(this.NoteEditRichTextBox_TextChanged);
