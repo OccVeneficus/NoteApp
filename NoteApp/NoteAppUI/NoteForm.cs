@@ -10,10 +10,10 @@ using System.Windows.Forms;
 using NoteApp;
 
 namespace NoteAppUI
-{ //TODO: имя файла не соответствует имени класса
+{
     public partial class NoteForm : Form
-    { //TODO: почему Temp? Temp - это имя для переменных внутри метода, а не для свойств и полей. //TODO: xml
-
+    { 
+        //TODO: А теперь почему Open? Почему не просто Note?
         /// <summary>
         /// Заметка для редактирования/добавления
         /// </summary>
@@ -35,7 +35,7 @@ namespace NoteAppUI
         }
 
         private void ButtonEditNoteCancel_Click(object sender, EventArgs e)
-        {
+        { //TODO: тоже надо присваивать результат диалога
             this.Close();
         }
 
@@ -61,7 +61,7 @@ namespace NoteAppUI
         private void NoteTitleTextbox_Validating(object sender, CancelEventArgs e)
         {
             if (NoteTitleTextbox.Text.Length > 50)
-            { //TODO: закомментированный код на пул реквесты на отправляется - если он не нужен, удалить. Если нужен, то оставить комментарий с информацией для других разработчиков
+            {
                 e.Cancel = true;
                 NoteTitleTextbox.Select(0,NoteTitleTextbox.Text.Length);
             }
@@ -70,7 +70,6 @@ namespace NoteAppUI
         private void NoteTitleTextbox_Validated(object sender, EventArgs e)
         {
             OpenNote.Name = NoteTitleTextbox.Text;
-            //TODO: см. выше
         }
 
         private void NoteTitleTextbox_TextChanged(object sender, EventArgs e)

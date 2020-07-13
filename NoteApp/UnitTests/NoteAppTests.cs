@@ -10,6 +10,7 @@ using NoteApp;
 
 namespace UnitTests
 {
+    //TODO: почему все тесты в одном файле? Каждый класс в своем файле
     [TestFixture]
     public class NoteTest
     {
