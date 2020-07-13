@@ -18,7 +18,7 @@ namespace NoteApp
     public static class ProjectManager
     {
         /// <summary>
-        /// Путь сохранения файла с проектом по умолчанию
+        /// Путь сохранения файла с проектом по умолчанию   
         /// </summary>
         public static string DefaultFilePath { get; private set; } = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\NoteApp.notes";
         /// <summary>

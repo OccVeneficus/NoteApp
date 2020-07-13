@@ -53,8 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="TestData\CorruptedNoteApp.notes" />
-    <None Include="TestData\TestNoteApp.notes" />
+    <None Include="TestData\CorruptedNoteApp.notes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\TestNoteApp.notes">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NoteApp\NoteApp\NoteApp.csproj">

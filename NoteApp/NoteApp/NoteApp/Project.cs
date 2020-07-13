@@ -22,6 +22,7 @@ namespace NoteApp
         public List<Note> Notes
         {
             get { return _notes; }
+            set { _notes = value; }
         }
     }
 }
