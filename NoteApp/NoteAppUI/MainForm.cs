@@ -64,6 +64,12 @@ namespace NoteAppUI
         {
             Note selectedNote = _project.Notes.Find(note => note.Name.Equals(NoteNamesListBox.SelectedItem.ToString())
                                                             && note.CreatedDate.Equals(CreationDateTime.Value));
+            if (selectedNote == null)
+            {
+                MessageBox.Show("Список заметок пуст. Создайте новою заметку с помощью кнопки edit.",
+                    "Заметки отсутствуют", MessageBoxButtons.OK);
+                return;
+            }
             Note selectedNoteCopy = (Note) selectedNote.Clone();
             NoteForm addEditNote = new NoteForm();
             addEditNote.OpenNote = selectedNoteCopy;
@@ -86,6 +92,11 @@ namespace NoteAppUI
 
         private void deleteNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (NoteNamesListBox.SelectedItem == null)
+            {
+                MessageBox.Show("Список заметок пуст", "", MessageBoxButtons.OK);
+                return;
+            }
             if (MessageBox.Show("Вы точно хотите удалить " + NoteNamesListBox.SelectedItem.ToString() + " ?",
                     "Удаление заметки", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
@@ -100,6 +111,15 @@ namespace NoteAppUI
                 if (_project.Notes.Count != 0)
                 {
                     NoteNamesListBox.SelectedItem = _project.Notes[0].Name;
+                }
+                else
+                {
+                    NoteNamesListBox.SelectedItem = null;
+                    NoteNameLabel.ResetText();
+                    NoteTextbox.ResetText();
+                    CreationDateTime.Value = DateTime.Now;
+                    ModifiedDateTime.Value = DateTime.Now;
+                    NoteCategory.ResetText();
                 }
             }
         }
