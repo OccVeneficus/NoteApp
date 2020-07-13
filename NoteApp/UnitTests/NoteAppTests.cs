@@ -13,18 +13,17 @@ namespace UnitTests
     [TestFixture]
     public class NoteTest
     {
-        private Note _note;
         private readonly DateTime _date = DateTime.Now;
-
-        [SetUp]
+        private Note _note;
         public void InitNote()
         {
-            _note = new Note(_date, DateTime.Now, "Testname","Testtext",NoteCategory.Work);
+            _note =  new Note(_date, DateTime.Now, "Testname", "Testtext", NoteCategory.Work);
         }
 
         [Test(Description = "Присвоение правильных данных в констуркторе заметки")]
         public void TestNoteConstructor_CorrectValues()
         {
+            InitNote();
             var expectedName = "TestNoteName";
             var expectedText = "TestText";
             var expectedCategory = NoteCategory.Other;
@@ -50,7 +49,7 @@ namespace UnitTests
         [Test(Description = "Присвоение имени заметки больше 50 символов")]
         public void TestNameProperty_Longer50Symbols()
         {
-
+            InitNote();
             Assert.Throws<Exception>(() => { _note.Name = "Test_Test_Test_Test_Test_Test_Test_Test_Test_Test_Test_Test_"; },
                 "Должно возникать если название длиннее 50 символов");
         }
@@ -58,6 +57,7 @@ namespace UnitTests
         [Test(Description = "Создание клона объекта")]
         public void TestNoteClone_Object()
         {
+            InitNote();
             Note cloneNote = (Note) _note.Clone();
             Assert.AreNotSame(cloneNote,_note, "Не произошло копирование");
         }
@@ -68,7 +68,6 @@ namespace UnitTests
     {
         private Project _project;
 
-        [SetUp]
         public void InitProject()
         {
             _project = new Project();
@@ -77,6 +76,7 @@ namespace UnitTests
         [Test(Description = "Присвоение правильных данных в коллекцию проекта")]
         public void ProjectTest_CorrectValues()
         {
+            InitProject();
             var expectedList = new List<Note>(){new Note(DateTime.Parse("2020-07-12T20:03:15.8537962+07:00"),
                 DateTime.Parse("2020-07-12T20:03:15.8537962+07:00"),
                 "TestDataNoteName", "SampleText", NoteCategory.Other)};
@@ -92,7 +92,6 @@ namespace UnitTests
         private readonly string _corruptedFileLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\TestData\\CorruptedNoteApp.notes";
         private Note _testNote;
 
-        [SetUp]
         public void InitTestNote()
         {
             _testNote = new Note(DateTime.Parse("2020-07-12T20:03:15.8537962+07:00"),
@@ -100,10 +99,10 @@ namespace UnitTests
                 "TestDataNoteName", "SampleText", NoteCategory.Other);
         }
 
-
         [Test(Description = "Сохранение файла с эталонным проектом")]
         public void ProjectManagerSaveToFile_SaveTestFile()
         {
+            InitTestNote();
             Project project = new Project();
             project.Notes.Add(_testNote);
             var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\TestData\\TestNoteAppSave.notes";
@@ -130,9 +129,10 @@ namespace UnitTests
             Assert.IsEmpty(project.Notes, "В проект загруженны неизвестные данные");
         }
 
-        [Test(Description = "загрузка эталонного файла")]
+        [Test(Description = "Загрузка эталонного файла")]
         public void ProjectManagerLoad_TestFile()
         {
+            InitTestNote();
             Project project = ProjectManager.LoadFromFile(_testFileLocation);
             Assert.AreEqual(_testNote.ToString(),project.Notes[0].ToString(),"Загруженные данные не совпадают с эталоном");
         }
