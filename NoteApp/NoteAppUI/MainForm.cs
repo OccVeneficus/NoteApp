@@ -19,6 +19,17 @@ namespace NoteAppUI
         /// </summary>
         private Project _project;
 
+        private void UpdateData()
+        {
+            Note tempNote = _project.CurrentNote;
+            NoteNamesListBox.DataSource = CategoryComboBox.SelectedItem.Equals("All")
+                ? _project.SortNotesByModifiedDate(_project.Notes) 
+                : _project.SortNotesByModifiedDate(_project.Notes, (NoteCategory) CategoryComboBox.SelectedItem);
+            NoteNamesListBox.DisplayMember = "Name";
+            _project.CurrentNote = tempNote;
+            NoteNamesListBox.SelectedItem = _project.CurrentNote;
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -31,15 +42,7 @@ namespace NoteAppUI
 
             _project = ProjectManager.LoadFromFile(ProjectManager.DefaultFilePath);
 
-            foreach (var note in _project.Notes)
-            {
-                NoteNamesListBox.Items.Add(note.Name);
-            }
-
-            if (_project.Notes.Count != 0)
-            {
-                NoteNamesListBox.SelectedItem = _project.Notes[0].Name;
-            }
+            CategoryComboBox.SelectedItem = "All";
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,43 +53,38 @@ namespace NoteAppUI
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NoteForm addEditNote = new NoteForm();
-            addEditNote.OpenNote = new Note(DateTime.Now, DateTime.Now, "No name", "", NoteApp.NoteCategory.Other);
+            addEditNote.Note = new Note(DateTime.Now, DateTime.Now,
+                "No name", "", NoteApp.NoteCategory.Other);
             addEditNote.ShowDialog();
             if (addEditNote.DialogResult == DialogResult.OK)
             {
-                _project.Notes.Add(addEditNote.OpenNote);
-                NoteNamesListBox.Items.Add(addEditNote.OpenNote.Name);
+                _project.Notes.Add(addEditNote.Note);
+                _project.CurrentNote = addEditNote.Note;
+                UpdateData();
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultFilePath);
             }
         }
 
         private void editNoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Note selectedNote = _project.Notes.Find(note => note.Name.Equals(NoteNamesListBox.SelectedItem.ToString())
-                                                            && note.CreatedDate.Equals(CreationDateTime.Value));
-            if (selectedNote == null)
+            if (_project.CurrentNote == null)
             {
-                MessageBox.Show("Список заметок пуст. Создайте новою заметку с помощью кнопки edit.",
-                    "Заметки отсутствуют", MessageBoxButtons.OK);
+                MessageBox.Show(@"Create new note with Edit button",
+                    @"Note list is empty", MessageBoxButtons.OK);
                 return;
             }
-            Note selectedNoteCopy = (Note) selectedNote.Clone();
+            Note selectedNoteCopy = (Note) _project.CurrentNote.Clone();
             NoteForm addEditNote = new NoteForm();
-            addEditNote.OpenNote = selectedNoteCopy;
+            addEditNote.Note = selectedNoteCopy;
             addEditNote.ShowDialog();
             if (addEditNote.DialogResult == DialogResult.OK)
             {
-                selectedNote.Name = addEditNote.OpenNote.Name;
-                selectedNote.Text = addEditNote.OpenNote.Text;
-                selectedNote.Category = addEditNote.OpenNote.Category;
-                selectedNote.ModifidedDate = DateTime.Now;
-                NoteNamesListBox.Items.Clear();
-                foreach (var note in _project.Notes)
-                {
-                    NoteNamesListBox.Items.Add(note.Name);
-                }
+                _project.CurrentNote.Name = addEditNote.Note.Name;
+                _project.CurrentNote.Text = addEditNote.Note.Text;
+                _project.CurrentNote.Category = addEditNote.Note.Category;
+                _project.CurrentNote.ModifidedDate = DateTime.Now;
+                UpdateData();
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultFilePath);
-                NoteNamesListBox.SelectedItem = addEditNote.OpenNote.Name;
             }
         }
 
@@ -94,33 +92,32 @@ namespace NoteAppUI
         {
             if (NoteNamesListBox.SelectedItem == null)
             {
-                MessageBox.Show("Список заметок пуст", "", MessageBoxButtons.OK);
+                MessageBox.Show(@"", @"Note list is empty", MessageBoxButtons.OK);
                 return;
             }
-            if (MessageBox.Show("Вы точно хотите удалить " + NoteNamesListBox.SelectedItem.ToString() + " ?",
-                    "Удаление заметки", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show(@"You sure want to delete " + _project.CurrentNote.Name + " ?",
+                    @"Delete note", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 _project.Notes.Remove(_project.Notes.Find(note =>
-                    note.Name.Equals(NoteNamesListBox.SelectedItem.ToString())));
+                    note.Name.Equals(_project.CurrentNote.Name)&& note.CreatedDate.Equals(_project.CurrentNote.CreatedDate)));
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultFilePath);
-                NoteNamesListBox.Items.Clear();
-                foreach (var note in _project.Notes)
-                {
-                    NoteNamesListBox.Items.Add(note.Name);
-                }
+                NoteNamesListBox.Refresh();
                 if (_project.Notes.Count != 0)
                 {
-                    NoteNamesListBox.SelectedItem = _project.Notes[0].Name;
+                    NoteNamesListBox.SelectedItem = NoteNamesListBox.Items[0];
+                    _project.CurrentNote = (Note) NoteNamesListBox.SelectedItem;
                 }
                 else
                 {
                     NoteNamesListBox.SelectedItem = null;
+                    _project.CurrentNote = null;
                     NoteNameLabel.ResetText();
                     NoteTextbox.ResetText();
                     CreationDateTime.Value = DateTime.Now;
                     ModifiedDateTime.Value = DateTime.Now;
                     NoteCategory.ResetText();
                 }
+                UpdateData();
             }
         }
 
@@ -132,17 +129,27 @@ namespace NoteAppUI
 
         private void NoteNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Note currentNote = _project.Notes.Find(note => note.Name.Equals(NoteNamesListBox.SelectedItem.ToString()));
-            NoteNameLabel.Text = currentNote.Name;
-            NoteTextbox.Text = currentNote.Text;
-            NoteCategory.Text = currentNote.Category.ToString();
-            CreationDateTime.Value = currentNote.CreatedDate;
-            ModifiedDateTime.Value = currentNote.ModifidedDate;
+
+            _project.CurrentNote = _project.Notes.Find(note => note.Equals(NoteNamesListBox.SelectedItem));
+            if (_project.CurrentNote == null)
+            {
+                return;
+            }
+            NoteNameLabel.Text = _project.CurrentNote.Name;
+            NoteTextbox.Text = _project.CurrentNote.Text;
+            NoteCategory.Text = _project.CurrentNote.Category.ToString();
+            CreationDateTime.Value = _project.CurrentNote.CreatedDate;
+            ModifiedDateTime.Value = _project.CurrentNote.ModifidedDate;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             ProjectManager.SaveToFile(_project, ProjectManager.DefaultFilePath);
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateData();
         }
     }
 }

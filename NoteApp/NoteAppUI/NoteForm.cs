@@ -17,7 +17,7 @@ namespace NoteAppUI
         /// <summary>
         /// Заметка для редактирования/добавления
         /// </summary>
-        public Note OpenNote { set; get; }
+        public Note Note { set; get; }
 
         public NoteForm()
         {
@@ -36,26 +36,27 @@ namespace NoteAppUI
 
         private void ButtonEditNoteCancel_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
         private void NoteEditRichTextBox_TextChanged(object sender, EventArgs e)
         {
-            OpenNote.Text = NoteEditRichTextBox.Text;
+            Note.Text = NoteEditRichTextBox.Text;
         }
 
         private void AddEditNote_Shown(object sender, EventArgs e)
         {
-            NoteEditRichTextBox.Text = OpenNote.Text;
-            NoteCategoryEditComboBox.SelectedItem = OpenNote.Category;
-            NoteTitleTextbox.Text = OpenNote.Name;
-            NoteCreatedEditDateTime.Value = OpenNote.CreatedDate;
-            NoteModifiedEditDateTime.Value = OpenNote.ModifidedDate;
+            NoteEditRichTextBox.Text = Note.Text;
+            NoteCategoryEditComboBox.SelectedItem = Note.Category;
+            NoteTitleTextbox.Text = Note.Name;
+            NoteCreatedEditDateTime.Value = Note.CreatedDate;
+            NoteModifiedEditDateTime.Value = Note.ModifidedDate;
         }
 
         private void NoteCategoryEditComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            OpenNote.Category = (NoteCategory)NoteCategoryEditComboBox.SelectedItem;
+            Note.Category = (NoteCategory)NoteCategoryEditComboBox.SelectedItem;
         }
 
         private void NoteTitleTextbox_Validating(object sender, CancelEventArgs e)
@@ -69,7 +70,7 @@ namespace NoteAppUI
 
         private void NoteTitleTextbox_Validated(object sender, EventArgs e)
         {
-            OpenNote.Name = NoteTitleTextbox.Text;
+            Note.Name = NoteTitleTextbox.Text;
             //TODO: см. выше
         }
 
@@ -82,7 +83,7 @@ namespace NoteAppUI
             else
             {
                 NoteTitleTextbox.BackColor = Color.White;
-                OpenNote.Name = NoteTitleTextbox.Text;
+                Note.Name = NoteTitleTextbox.Text;
             }
         }
     }

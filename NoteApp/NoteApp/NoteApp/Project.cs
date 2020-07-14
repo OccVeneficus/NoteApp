@@ -24,5 +24,29 @@ namespace NoteApp
             get { return _notes; }
             set { _notes = value; }
         }
+
+        /// <summary>
+        /// Свойство для хранения текущей выбранной заметки
+        /// </summary>
+        public Note CurrentNote { set; get; }
+
+        public List<Note> SortNotesByModifiedDate(List<Note> notes)
+        {
+            return notes.OrderBy(note => note.ModifidedDate).ToList();
+        }
+
+        public List<Note> SortNotesByModifiedDate(List<Note> notes, NoteCategory category)
+        {
+            List<Note> categoryNotes = new List<Note>();
+            foreach (var note in notes)
+            {
+                if (note.Category == category)
+                {
+                    categoryNotes.Add(note);
+                }
+            }
+
+            return SortNotesByModifiedDate(categoryNotes);
+        }
     }
 }
