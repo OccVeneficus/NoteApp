@@ -32,7 +32,7 @@ namespace NoteApp
 
         public List<Note> SortNotesByModifiedDate(List<Note> notes)
         {
-            return notes.OrderBy(note => note.ModifidedDate).ToList();
+            return notes.OrderByDescending(note => note.ModifidedDate).ToList();
         }
 
         public List<Note> SortNotesByModifiedDate(List<Note> notes, NoteCategory category)
