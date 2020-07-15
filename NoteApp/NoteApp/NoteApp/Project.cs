@@ -30,11 +30,23 @@ namespace NoteApp
         /// </summary>
         public Note CurrentNote { set; get; }
 
+        /// <summary>
+        /// Сортировка заметок по убыванию даты последнего изменения
+        /// </summary>
+        /// <param name="notes">Сортеруемый список заметок</param>
+        /// <returns>Возвращает отсортированный список заметок</returns>
         public List<Note> SortNotesByModifiedDate(List<Note> notes)
         {
             return notes.OrderByDescending(note => note.ModifidedDate).ToList();
         }
 
+
+        /// <summary>
+        /// Сортировка по убыванию даты последнего изменения с выборкой по категории
+        /// </summary>
+        /// <param name="notes">Сортируемый списое заметок</param>
+        /// <param name="category">Категория выборки заметок</param>
+        /// <returns>Возвращает отсортированный список заметок указанной категории</returns>
         public List<Note> SortNotesByModifiedDate(List<Note> notes, NoteCategory category)
         {
             List<Note> categoryNotes = new List<Note>();
