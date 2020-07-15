@@ -25,6 +25,10 @@ namespace NoteApp
         /// </summary>
         public string Name
         {
+            get
+            {
+                return _name;
+            }
             set
             {
                 if (value.Length > 50)
@@ -34,10 +38,6 @@ namespace NoteApp
 
                 _name = value;
                 ModifidedDate = DateTime.Now;
-            }
-            get
-            {
-                return _name;
             }
         }
 
@@ -56,14 +56,14 @@ namespace NoteApp
         /// </summary>
         public NoteCategory Category
         {
+            get
+            {
+                return _category;
+            }
             set
             {
                 _category = value;
                 ModifidedDate = DateTime.Now;
-            }
-            get
-            {
-                return _category;
             }
         }
 
@@ -94,7 +94,8 @@ namespace NoteApp
         /// <returns>Возвращает новый экземпляр-копию текущего объекта</returns>
         public object Clone()
         {
-            var noteClone = new Note(this.CreatedDate, this.ModifidedDate, this.Name, this.Text, this.Category);
+            var noteClone = new Note(this.CreatedDate, this.ModifidedDate,
+                this.Name, this.Text, this.Category);
             return noteClone;
         }
 
@@ -107,7 +108,8 @@ namespace NoteApp
         /// <param name="text">Текст заметки</param>
         /// <param name="category">Категория <see cref="NoteCategory"/> заметки</param>
         [JsonConstructor]
-        public Note(DateTime createdDate, DateTime modifiedDate, string name, string text, NoteCategory category)
+        public Note(DateTime createdDate, DateTime modifiedDate, string name,
+            string text, NoteCategory category)
         {
             this.CreatedDate = createdDate;
             this.ModifidedDate = modifiedDate;

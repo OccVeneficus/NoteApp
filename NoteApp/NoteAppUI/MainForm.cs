@@ -27,7 +27,8 @@ namespace NoteAppUI
             Note tempNote = _project.CurrentNote;
             List<Note> tempNotes = CategoryComboBox.SelectedItem.Equals("All")
                 ? _project.SortNotesByModifiedDate(_project.Notes)
-                : _project.SortNotesByModifiedDate(_project.Notes, (NoteCategory)CategoryComboBox.SelectedItem);
+                : _project.SortNotesByModifiedDate(_project.Notes,
+                    (NoteCategory)CategoryComboBox.SelectedItem);
             NoteNamesListBox.DataSource = tempNotes;
             NoteNamesListBox.DisplayMember = "Name";
             _project.CurrentNote = tempNote;
@@ -122,10 +123,12 @@ namespace NoteAppUI
                 return;
             }
             if (MessageBox.Show(@"You sure want to delete " + _project.CurrentNote.Name + " ?",
-                    @"Delete note", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    @"Delete note", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                _project.Notes.Remove(_project.Notes.Find(note =>
-                    note.Name.Equals(_project.CurrentNote.Name)&& note.CreatedDate.Equals(_project.CurrentNote.CreatedDate)));
+                _project.Notes.Remove(_project.Notes.Find(note 
+                    => note.Name.Equals(_project.CurrentNote.Name)
+                       && note.CreatedDate.Equals(_project.CurrentNote.CreatedDate)));
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultFilePath);
                 if (_project.Notes.Count != 0)
                 {

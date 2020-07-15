@@ -20,7 +20,9 @@ namespace NoteApp
         /// <summary>
         /// Путь сохранения файла с проектом по умолчанию   
         /// </summary>
-        public static string DefaultFilePath { get; private set; } = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\NoteApp\\NoteApp.notes";
+        public static string DefaultFilePath { get; private set; } = 
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+            + "\\NoteApp\\NoteApp.notes";
         /// <summary>
         /// Сохраняет объект <see cref="Project"/> в файл 
         /// </summary>

@@ -17,7 +17,8 @@ namespace UnitTests
         private Note _note;
         public void InitNote()
         {
-            _note = new Note(_date, DateTime.Now, "Testname", "Testtext", NoteCategory.Work);
+            _note = new Note(_date, DateTime.Now, "Testname",
+                "Testtext", NoteCategory.Work);
         }
 
         [Test(Description = "Присвоение правильных данных в констуркторе заметки")]
@@ -35,22 +36,28 @@ namespace UnitTests
             _note.ModifidedDate = expectedModifiedDate;
 
             var actualName = _note.Name;
-            Assert.AreEqual(expectedName, actualName, "Неверное присвоение названия заметки");
+            Assert.AreEqual(expectedName, actualName,
+                "Неверное присвоение названия заметки");
             var actualText = _note.Text;
-            Assert.AreEqual(expectedText, actualText, "Неверное присвоение текста заметки");
+            Assert.AreEqual(expectedText, actualText,
+                "Неверное присвоение текста заметки");
             var actualCategory = _note.Category;
-            Assert.AreEqual(expectedCategory, actualCategory, "Неверное присвоенеие категории заметки");
+            Assert.AreEqual(expectedCategory, actualCategory,
+                "Неверное присвоенеие категории заметки");
             var actualCreationDate = _note.CreatedDate;
-            Assert.AreEqual(expectedCreationDate, actualCreationDate, "Неверное присвоение времени создания заметки");
+            Assert.AreEqual(expectedCreationDate, actualCreationDate,
+                "Неверное присвоение времени создания заметки");
             var actualModifiedDate = _note.ModifidedDate;
-            Assert.AreEqual(expectedModifiedDate, actualModifiedDate, "Неверное присвоение даты последнего изменения");
+            Assert.AreEqual(expectedModifiedDate, actualModifiedDate,
+                "Неверное присвоение даты последнего изменения");
         }
 
         [Test(Description = "Присвоение имени заметки больше 50 символов")]
         public void TestNameProperty_Longer50Symbols()
         {
             InitNote();
-            Assert.Throws<Exception>(() => { _note.Name = "Test_Test_Test_Test_Test_Test_Test_Test_Test_Test_Test_Test_"; },
+            Assert.Throws<Exception>(() =>
+                { _note.Name = "Test_Test_Test_Test_Test_Test_Test_Test_Test_Test_Test_Test_"; },
                 "Должно возникать если название длиннее 50 символов");
         }
 

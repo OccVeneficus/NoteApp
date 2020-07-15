@@ -54,7 +54,8 @@ namespace UnitTests
                 DateTime.Parse("2020-07-10T20:03:15.8537962+07:00")
             };
             List<Note> sortedNotes = _project.SortNotesByModifiedDate(_project.Notes);
-            Assert.IsTrue(sortedNotes.Select(n =>n.ModifidedDate).SequenceEqual(expected), "Список отсортирован неверно");
+            Assert.IsTrue(sortedNotes.Select(n =>n.ModifidedDate).SequenceEqual(expected),
+                "Список отсортирован неверно");
         }
 
         [Test(Description = "Тест метода сортировки по времени с выборкой по категории")]
@@ -69,9 +70,11 @@ namespace UnitTests
             List<Note> sortedNotes = _project.SortNotesByModifiedDate(_project.Notes, NoteCategory.Home);
             foreach (var note in sortedNotes)
             {
-                Assert.AreEqual(NoteCategory.Home,note.Category, "Неправильная выборка по категории");
+                Assert.AreEqual(NoteCategory.Home,note.Category,
+                    "Неправильная выборка по категории");
             }
-            Assert.IsTrue(sortedNotes.Select(n => n.ModifidedDate).SequenceEqual(expected), "Список отсортирован неверно");
+            Assert.IsTrue(sortedNotes.Select(n => n.ModifidedDate).SequenceEqual(expected),
+                "Список отсортирован неверно");
         }
     }
 }

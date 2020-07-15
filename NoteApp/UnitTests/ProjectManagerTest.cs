@@ -14,8 +14,12 @@ namespace UnitTests
     [TestFixture]
     public class ProjectManagerTest
     {
-        private readonly string _testFileLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\TestData\\TestNoteApp.notes";
-        private readonly string _corruptedFileLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\TestData\\CorruptedNoteApp.notes";
+        private readonly string _testFileLocation = 
+            Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            + "\\TestData\\TestNoteApp.notes";
+        private readonly string _corruptedFileLocation =
+            Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) 
+            + "\\TestData\\CorruptedNoteApp.notes";
         private Note _testNote;
 
         public void InitTestNote()
@@ -33,14 +37,16 @@ namespace UnitTests
             Project project = new Project();
             project.Notes.Add(_testNote);
             project.CurrentNote = _testNote;
-            var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\TestData\\TestNoteAppSave.notes";
+            var location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+                           + "\\TestData\\TestNoteAppSave.notes";
             if (File.Exists(location))
             {
                 File.Delete(location);
             }
             ProjectManager.SaveToFile(project, location);
             Assert.IsTrue(File.Exists(location), "Файл не был создан");
-            Assert.AreEqual(File.ReadAllText(location), File.ReadAllText(_testFileLocation), "Содержание созданного файла отличается от эталонного");
+            Assert.AreEqual(File.ReadAllText(location), File.ReadAllText(_testFileLocation),
+                "Содержание созданного файла отличается от эталонного");
         }
 
         [Test(Description = "Загрузка поврежденного файла")]
@@ -62,7 +68,8 @@ namespace UnitTests
         {
             InitTestNote();
             Project project = ProjectManager.LoadFromFile(_testFileLocation);
-            Assert.AreEqual(_testNote.ToString(), project.Notes[0].ToString(), "Загруженные данные не совпадают с эталоном");
+            Assert.AreEqual(_testNote.ToString(), project.Notes[0].ToString(),
+                "Загруженные данные не совпадают с эталоном");
         }
     }
 }
