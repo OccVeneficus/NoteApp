@@ -27,7 +27,25 @@ namespace NoteAppUI
                 : _project.SortNotesByModifiedDate(_project.Notes, (NoteCategory) CategoryComboBox.SelectedItem);
             NoteNamesListBox.DisplayMember = "Name";
             _project.CurrentNote = tempNote;
-            NoteNamesListBox.SelectedItem = _project.CurrentNote;
+        }
+
+        private void SetCurrentNote()
+        {
+            Project project = new Project();
+            project.Notes = (List<Note>)NoteNamesListBox.DataSource;
+            int i = project.Notes.FindIndex(note =>
+                note.Name.Equals(_project.CurrentNote.Name) &&
+                note.CreatedDate.Equals(_project.CurrentNote.CreatedDate));
+            if (i < 0)
+            {
+                return;
+            }
+            NoteNamesListBox.SetSelected(i, true);
+            NoteNameLabel.Text = _project.CurrentNote.Name;
+            NoteTextbox.Text = _project.CurrentNote.Text;
+            NoteCategory.Text = _project.CurrentNote.Category.ToString();
+            CreationDateTime.Value = _project.CurrentNote.CreatedDate;
+            ModifiedDateTime.Value = _project.CurrentNote.ModifidedDate;
         }
 
         public MainForm()
@@ -42,7 +60,10 @@ namespace NoteAppUI
 
             _project = ProjectManager.LoadFromFile(ProjectManager.DefaultFilePath);
 
+            NoteNamesListBox.SelectedIndexChanged -= NoteNamesListBox_SelectedIndexChanged;
             CategoryComboBox.SelectedItem = "All";
+            SetCurrentNote();
+            NoteNamesListBox.SelectedIndexChanged += NoteNamesListBox_SelectedIndexChanged;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
