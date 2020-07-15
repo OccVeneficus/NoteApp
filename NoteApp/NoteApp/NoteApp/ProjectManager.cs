@@ -50,7 +50,7 @@ namespace NoteApp
 
             if (!File.Exists(path))
             {
-                Project project = new Project();
+                Project project = new Project(); //TODO: сразу ретерн, зачем две строчки
                 return project;
             }
 
@@ -64,7 +64,7 @@ namespace NoteApp
             }
             catch (JsonSerializationException)
             {
-                Project project = new Project();
+                Project project = new Project(); //TODO: см. выше
                 return project;
             }
         }

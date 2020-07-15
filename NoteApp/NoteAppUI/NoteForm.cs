@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using NoteApp;
 
 namespace NoteAppUI
-{ //TODO: имя файла не соответствует имени класса
+{
     public partial class NoteForm : Form
-    { //TODO: почему Temp? Temp - это имя для переменных внутри метода, а не для свойств и полей. //TODO: xml
+    {
 
         /// <summary>
         /// Заметка для редактирования/добавления
@@ -22,6 +22,7 @@ namespace NoteAppUI
         public NoteForm()
         {
             InitializeComponent();
+            //TODO: AddRange?
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))
             {
                 NoteCategoryEditComboBox.Items.Add(category);
@@ -62,7 +63,7 @@ namespace NoteAppUI
         private void NoteTitleTextbox_Validating(object sender, CancelEventArgs e)
         {
             if (NoteTitleTextbox.Text.Length > 50)
-            { //TODO: закомментированный код на пул реквесты на отправляется - если он не нужен, удалить. Если нужен, то оставить комментарий с информацией для других разработчиков
+            {
                 e.Cancel = true;
                 NoteTitleTextbox.Select(0,NoteTitleTextbox.Text.Length);
             }
@@ -71,7 +72,6 @@ namespace NoteAppUI
         private void NoteTitleTextbox_Validated(object sender, EventArgs e)
         {
             Note.Name = NoteTitleTextbox.Text;
-            //TODO: см. выше
         }
 
         private void NoteTitleTextbox_TextChanged(object sender, EventArgs e)

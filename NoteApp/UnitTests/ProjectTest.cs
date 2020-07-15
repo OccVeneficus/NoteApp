@@ -11,7 +11,7 @@ using NoteApp;
 namespace UnitTests
 {
     [TestFixture]
-    public class ProjectTest
+    public class ProjectTest //TODO: добавить тесты на сортировку
     {
         private Project _project;
 

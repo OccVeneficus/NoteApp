@@ -12,6 +12,9 @@ using NoteApp;
 
 namespace NoteAppUI
 {
+    //TODO: после редактирования названия заметки, её название не меняется в листбоксе главного окна
+    //TODO: при запуске программы в листбоксе выбрана заметка, но она не показывается на правой панели
+    //TODO: текстовое поле с текстом заметки слишком близко к полям окна - стоит впритык к нижней и правой границам. Все поля должны быть одинаковые
     public partial class MainForm : Form
     {
         /// <summary>
@@ -19,7 +22,7 @@ namespace NoteAppUI
         /// </summary>
         private Project _project;
 
-        private void UpdateData()
+        private void UpdateData() //TODO: слишком абстрактное название
         {
             Note tempNote = _project.CurrentNote;
             NoteNamesListBox.DataSource = CategoryComboBox.SelectedItem.Equals("All")
@@ -32,7 +35,7 @@ namespace NoteAppUI
         private void SetCurrentNote()
         {
             Project project = new Project();
-            project.Notes = (List<Note>)NoteNamesListBox.DataSource;
+            project.Notes = (List<Note>)NoteNamesListBox.DataSource; //TODO: этот метод вызывается в конструкторе до того, как DataSource установлен на считанный из файла проект. Ты уверен, что здесь сохраняется правильный объект?
             int i = project.Notes.FindIndex(note =>
                 note.Name.Equals(_project.CurrentNote.Name) &&
                 note.CreatedDate.Equals(_project.CurrentNote.CreatedDate));
@@ -41,6 +44,7 @@ namespace NoteAppUI
                 return;
             }
             NoteNamesListBox.SetSelected(i, true);
+            //TODO: следующий код должен выполняться автоматически при смене селектедИндекс
             NoteNameLabel.Text = _project.CurrentNote.Name;
             NoteTextbox.Text = _project.CurrentNote.Text;
             NoteCategory.Text = _project.CurrentNote.Category.ToString();
@@ -51,7 +55,7 @@ namespace NoteAppUI
         public MainForm()
         {
             InitializeComponent();
-
+            //TODO: AddRange?
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))
             {
                 CategoryComboBox.Items.Add(category);
@@ -60,6 +64,7 @@ namespace NoteAppUI
 
             _project = ProjectManager.LoadFromFile(ProjectManager.DefaultFilePath);
 
+            //TODO: временная отписка от событий - признак костыля. Попробуй сделать по-другому
             NoteNamesListBox.SelectedIndexChanged -= NoteNamesListBox_SelectedIndexChanged;
             CategoryComboBox.SelectedItem = "All";
             SetCurrentNote();
@@ -145,13 +150,13 @@ namespace NoteAppUI
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             About aboutInfo = new About();
-            aboutInfo.Show();
+            aboutInfo.Show(); //TODO: зачем пользователю переключаться с окна эбаут?
         }
 
         private void NoteNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            _project.CurrentNote = _project.Notes.Find(note => note.Equals(NoteNamesListBox.SelectedItem));
+            //TODO: если выбранный индекс -1? (пустой список в листбоксе)
+            _project.CurrentNote = _project.Notes.Find(note => note.Equals(NoteNamesListBox.SelectedItem)); //TODO: а если две заметки с одинаковым именем? Это надежный способ определения заметки?
             if (_project.CurrentNote == null)
             {
                 return;
