@@ -140,7 +140,7 @@
             this.NoteCreatedEditDateTime.Location = new System.Drawing.Point(70, 60);
             this.NoteCreatedEditDateTime.Margin = new System.Windows.Forms.Padding(2);
             this.NoteCreatedEditDateTime.Name = "NoteCreatedEditDateTime";
-            this.NoteCreatedEditDateTime.Size = new System.Drawing.Size(99, 20);
+            this.NoteCreatedEditDateTime.Size = new System.Drawing.Size(91, 20);
             this.NoteCreatedEditDateTime.TabIndex = 17;
             // 
             // NoteModifiedDateEditLabel

@@ -23,6 +23,7 @@ namespace UnitTests
             _testNote = new Note(DateTime.Parse("2020-07-15T11:22:17.4984499+07:00"),
                 DateTime.Parse("2020-07-15T11:22:17.4984499+07:00"),
                 "3", "3", NoteCategory.HealthAndSport);
+            _testNote.ModifidedDate = DateTime.Parse("2020-07-15T11:22:17.4984499+07:00");
         }
 
         [Test(Description = "Сохранение файла с эталонным проектом")]

@@ -22,34 +22,29 @@ namespace NoteAppUI
         /// </summary>
         private Project _project;
 
-        private void UpdateData() //TODO: слишком абстрактное название
+        private void UpdateCategoryListBox() //TODO: слишком абстрактное название
         {
             Note tempNote = _project.CurrentNote;
-            NoteNamesListBox.DataSource = CategoryComboBox.SelectedItem.Equals("All")
-                ? _project.SortNotesByModifiedDate(_project.Notes) 
-                : _project.SortNotesByModifiedDate(_project.Notes, (NoteCategory) CategoryComboBox.SelectedItem);
+            List<Note> tempNotes = CategoryComboBox.SelectedItem.Equals("All")
+                ? _project.SortNotesByModifiedDate(_project.Notes)
+                : _project.SortNotesByModifiedDate(_project.Notes, (NoteCategory)CategoryComboBox.SelectedItem);
+            NoteNamesListBox.DataSource = tempNotes;
             NoteNamesListBox.DisplayMember = "Name";
             _project.CurrentNote = tempNote;
-        }
-
-        private void SetCurrentNote()
-        {
-            Project project = new Project();
-            project.Notes = (List<Note>)NoteNamesListBox.DataSource; //TODO: этот метод вызывается в конструкторе до того, как DataSource установлен на считанный из файла проект. Ты уверен, что здесь сохраняется правильный объект?
-            int i = project.Notes.FindIndex(note =>
-                note.Name.Equals(_project.CurrentNote.Name) &&
-                note.CreatedDate.Equals(_project.CurrentNote.CreatedDate));
-            if (i < 0)
+            if (tempNotes.Count != 0)
             {
-                return;
+                int index = tempNotes.FindIndex(note =>
+                    note.Name.Equals(_project.CurrentNote.Name) &&
+                    note.CreatedDate.Equals(_project.CurrentNote.CreatedDate));
+                if (index >= 0)
+                {
+                    NoteNamesListBox.SelectedItem = NoteNamesListBox.Items[index];
+                }
+                else
+                {
+                    _project.CurrentNote = tempNotes[0];
+                }
             }
-            NoteNamesListBox.SetSelected(i, true);
-            //TODO: следующий код должен выполняться автоматически при смене селектедИндекс
-            NoteNameLabel.Text = _project.CurrentNote.Name;
-            NoteTextbox.Text = _project.CurrentNote.Text;
-            NoteCategory.Text = _project.CurrentNote.Category.ToString();
-            CreationDateTime.Value = _project.CurrentNote.CreatedDate;
-            ModifiedDateTime.Value = _project.CurrentNote.ModifidedDate;
         }
 
         public MainForm()
@@ -63,12 +58,17 @@ namespace NoteAppUI
             CategoryComboBox.Items.Add("All");
 
             _project = ProjectManager.LoadFromFile(ProjectManager.DefaultFilePath);
+            _project.Notes = _project.SortNotesByModifiedDate(_project.Notes);
 
             //TODO: временная отписка от событий - признак костыля. Попробуй сделать по-другому
-            NoteNamesListBox.SelectedIndexChanged -= NoteNamesListBox_SelectedIndexChanged;
             CategoryComboBox.SelectedItem = "All";
-            SetCurrentNote();
-            NoteNamesListBox.SelectedIndexChanged += NoteNamesListBox_SelectedIndexChanged;
+            if (_project.Notes.Count != 0)
+            {
+                NoteNamesListBox.SelectedItem = NoteNamesListBox.Items[
+                    _project.Notes.FindIndex(note =>
+                        note.Name.Equals(_project.CurrentNote.Name) &&
+                        note.CreatedDate.Equals(_project.CurrentNote.CreatedDate))];
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace NoteAppUI
             {
                 _project.Notes.Add(addEditNote.Note);
                 _project.CurrentNote = addEditNote.Note;
-                UpdateData();
+                UpdateCategoryListBox();
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultFilePath);
             }
         }
@@ -109,7 +109,7 @@ namespace NoteAppUI
                 _project.CurrentNote.Text = addEditNote.Note.Text;
                 _project.CurrentNote.Category = addEditNote.Note.Category;
                 _project.CurrentNote.ModifidedDate = DateTime.Now;
-                UpdateData();
+                UpdateCategoryListBox();
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultFilePath);
             }
         }
@@ -127,7 +127,6 @@ namespace NoteAppUI
                 _project.Notes.Remove(_project.Notes.Find(note =>
                     note.Name.Equals(_project.CurrentNote.Name)&& note.CreatedDate.Equals(_project.CurrentNote.CreatedDate)));
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultFilePath);
-                NoteNamesListBox.Refresh();
                 if (_project.Notes.Count != 0)
                 {
                     NoteNamesListBox.SelectedItem = NoteNamesListBox.Items[0];
@@ -143,21 +142,22 @@ namespace NoteAppUI
                     ModifiedDateTime.Value = DateTime.Now;
                     NoteCategory.ResetText();
                 }
-                UpdateData();
+                UpdateCategoryListBox();
             }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             About aboutInfo = new About();
-            aboutInfo.Show(); //TODO: зачем пользователю переключаться с окна эбаут?
+            aboutInfo.ShowDialog(); //TODO: зачем пользователю переключаться с окна эбаут?
         }
 
         private void NoteNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //TODO: если выбранный индекс -1? (пустой список в листбоксе)
-            _project.CurrentNote = _project.Notes.Find(note => note.Equals(NoteNamesListBox.SelectedItem)); //TODO: а если две заметки с одинаковым именем? Это надежный способ определения заметки?
-            if (_project.CurrentNote == null)
+            //TODO: а если две заметки с одинаковым именем? Это надежный способ определения заметки?
+            _project.CurrentNote = NoteNamesListBox.SelectedItem as Note;
+            if (_project.CurrentNote == null || NoteNamesListBox.SelectedIndex < 0)
             {
                 return;
             }
@@ -175,7 +175,7 @@ namespace NoteAppUI
 
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateData();
+            UpdateCategoryListBox();
         }
     }
 }

@@ -12,23 +12,14 @@ namespace NoteApp
     public class Project
     {
         /// <summary>
-        /// Коллекция всех созданных записок
-        /// </summary>
-        private List<Note> _notes = new List<Note>(); //TODO: заменить на автосвойство
-
-        /// <summary>
         /// Доступ к коллекции записок
         /// </summary>
-        public List<Note> Notes
-        {
-            get { return _notes; }
-            set { _notes = value; }
-        }
+        public List<Note> Notes { get; set; } = new List<Note>();
 
         /// <summary>
         /// Свойство для хранения текущей выбранной заметки
         /// </summary>
-        public Note CurrentNote { set; get; }
+        public Note CurrentNote { get; set; }
 
         /// <summary>
         /// Сортировка заметок по убыванию даты последнего изменения

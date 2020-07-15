@@ -17,12 +17,13 @@ namespace NoteAppUI
         /// <summary>
         /// Заметка для редактирования/добавления
         /// </summary>
-        public Note Note { set; get; }
+        public Note Note { get; set; }
 
         public NoteForm()
         {
             InitializeComponent();
             //TODO: AddRange?
+            var enums = Enum.GetValues(typeof(NoteCategory));
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))
             {
                 NoteCategoryEditComboBox.Items.Add(category);

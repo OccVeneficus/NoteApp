@@ -208,6 +208,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 10, 10);
             this.splitContainer1.Size = new System.Drawing.Size(948, 529);
             this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.SplitterWidth = 3;
@@ -270,7 +271,7 @@
             this.NoteNamesListBox.Location = new System.Drawing.Point(9, 33);
             this.NoteNamesListBox.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
             this.NoteNamesListBox.Name = "NoteNamesListBox";
-            this.NoteNamesListBox.Size = new System.Drawing.Size(262, 394);
+            this.NoteNamesListBox.Size = new System.Drawing.Size(262, 446);
             this.NoteNamesListBox.TabIndex = 0;
             this.NoteNamesListBox.ValueMember = "Note.Name";
             this.NoteNamesListBox.SelectedIndexChanged += new System.EventHandler(this.NoteNamesListBox_SelectedIndexChanged);
@@ -319,7 +320,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.NoteTextbox);
-            this.splitContainer2.Size = new System.Drawing.Size(665, 529);
+            this.splitContainer2.Size = new System.Drawing.Size(655, 519);
             this.splitContainer2.SplitterDistance = 95;
             this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 0;
@@ -341,7 +342,7 @@
             this.ModifiedDateTime.Location = new System.Drawing.Point(227, 70);
             this.ModifiedDateTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ModifiedDateTime.Name = "ModifiedDateTime";
-            this.ModifiedDateTime.Size = new System.Drawing.Size(102, 20);
+            this.ModifiedDateTime.Size = new System.Drawing.Size(91, 20);
             this.ModifiedDateTime.TabIndex = 5;
             // 
             // CreationDateTime
@@ -351,7 +352,7 @@
             this.CreationDateTime.Location = new System.Drawing.Point(58, 70);
             this.CreationDateTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CreationDateTime.Name = "CreationDateTime";
-            this.CreationDateTime.Size = new System.Drawing.Size(102, 20);
+            this.CreationDateTime.Size = new System.Drawing.Size(91, 20);
             this.CreationDateTime.TabIndex = 4;
             // 
             // CreatedNoteLabel
@@ -401,9 +402,9 @@
             this.NoteTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NoteTextbox.Enabled = false;
             this.NoteTextbox.Location = new System.Drawing.Point(0, 0);
-            this.NoteTextbox.Margin = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.NoteTextbox.Margin = new System.Windows.Forms.Padding(0, 0, 19, 20);
             this.NoteTextbox.Name = "NoteTextbox";
-            this.NoteTextbox.Size = new System.Drawing.Size(665, 433);
+            this.NoteTextbox.Size = new System.Drawing.Size(655, 423);
             this.NoteTextbox.TabIndex = 0;
             this.NoteTextbox.Text = "";
             // 

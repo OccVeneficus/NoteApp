@@ -33,6 +33,7 @@ namespace NoteApp
                 }
 
                 _name = value;
+                ModifidedDate = DateTime.Now;
             }
             get
             {
@@ -58,6 +59,7 @@ namespace NoteApp
             set
             {
                 _category = value;
+                ModifidedDate = DateTime.Now;
             }
             get
             {
@@ -73,7 +75,7 @@ namespace NoteApp
         /// <summary>
         /// Возвращает дату создания заметки
         /// </summary>
-        public DateTime CreatedDate { private set; get; } //TODO: здесь и везде - сначала гет, потом сет. Поправить везде
+        public DateTime CreatedDate {  get; private set; } //TODO: здесь и везде - сначала гет, потом сет. Поправить везде
 
         /// <summary>
         /// Дата последнего изменения заметки
@@ -84,7 +86,7 @@ namespace NoteApp
         /// Возвращает дату последнего изменения параметров заметки
         /// </summary>
         
-        public DateTime ModifidedDate { set; get; }
+        public DateTime ModifidedDate { get; set; }
 
         /// <summary>
         /// Реализация интерфейса IClone
