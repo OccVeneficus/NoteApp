@@ -111,7 +111,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>md $(SolutionDir)Installer\Release
+xcopy $(ProjectDir)$(OutDir)*.dll $(SolutionDir)Installer\Release
+xcopy $(ProjectDir)$(OutDir)*.exe $(SolutionDir)Installer\Release
+xcopy $(ProjectDir)Resources\*.ico $(SolutionDir)Installer\Release</PostBuildEvent>
   </PropertyGroup>
 </Project>
