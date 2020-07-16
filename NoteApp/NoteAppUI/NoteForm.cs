@@ -22,7 +22,7 @@ namespace NoteAppUI
         public NoteForm()
         {
             InitializeComponent();
-            //TODO: AddRange?
+
             var enums = Enum.GetValues(typeof(NoteCategory));
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))
             {

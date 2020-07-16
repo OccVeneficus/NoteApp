@@ -12,9 +12,6 @@ using NoteApp;
 
 namespace NoteAppUI
 {
-    //TODO: после редактирования названия заметки, её название не меняется в листбоксе главного окна
-    //TODO: при запуске программы в листбоксе выбрана заметка, но она не показывается на правой панели
-    //TODO: текстовое поле с текстом заметки слишком близко к полям окна - стоит впритык к нижней и правой границам. Все поля должны быть одинаковые
     public partial class MainForm : Form
     {
         /// <summary>
@@ -22,7 +19,7 @@ namespace NoteAppUI
         /// </summary>
         private Project _project;
 
-        private void UpdateCategoryListBox() //TODO: слишком абстрактное название
+        private void UpdateCategoryListBox()
         {
             Note tempNote = _project.CurrentNote;
             List<Note> tempNotes = CategoryComboBox.SelectedItem.Equals("All")
@@ -51,7 +48,7 @@ namespace NoteAppUI
         public MainForm()
         {
             InitializeComponent();
-            //TODO: AddRange?
+
             foreach (var category in Enum.GetValues(typeof(NoteCategory)))
             {
                 CategoryComboBox.Items.Add(category);
@@ -61,7 +58,6 @@ namespace NoteAppUI
             _project = ProjectManager.LoadFromFile(ProjectManager.DefaultFilePath);
             _project.Notes = _project.SortNotesByModifiedDate(_project.Notes);
 
-            //TODO: временная отписка от событий - признак костыля. Попробуй сделать по-другому
             CategoryComboBox.SelectedItem = "All";
             if (_project.Notes.Count != 0)
             {
@@ -152,13 +148,11 @@ namespace NoteAppUI
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             About aboutInfo = new About();
-            aboutInfo.ShowDialog(); //TODO: зачем пользователю переключаться с окна эбаут?
+            aboutInfo.ShowDialog();
         }
 
         private void NoteNamesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO: если выбранный индекс -1? (пустой список в листбоксе)
-            //TODO: а если две заметки с одинаковым именем? Это надежный способ определения заметки?
             _project.CurrentNote = NoteNamesListBox.SelectedItem as Note;
             if (_project.CurrentNote == null || NoteNamesListBox.SelectedIndex < 0)
             {
